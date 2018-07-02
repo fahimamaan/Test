@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Not initializing employee name variable-->
+<bean name="employee" class="com.spring.com_spring.Employee" />
+
+<bean name="employeeService" class="com.spring.com_spring.EmployeeService">
+	<property name="employee" ref="employee"></property>
+</bean>
+
+<bean name="myEmployeeService" class="com.spring.com_spring.MyEmployeeService"
+		init-method="init" destroy-method="destroy">
+	<property name="employee" ref="employee"></property>
+</bean>
+
+<!-- initializing CommonAnnotationBeanPostProcessor is same as context:annotation-config -->
+<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+<bean name="myService" class="com.spring.com_spring.MyService" />
+<bean name="myAwareService" class="com.spring.com_spring.MyAwareService" />
+ <bean id="scopeTest" class="com.spring.com_spring.Scope" scope="singleton">
+        <property name="name" value="Shamik Mitra"/>    
+    </bean>    
+    <bean id="scopeTestDuplicate" class="com.spring.com_spring.Scope" scope="singleton">
+        <property name="name" value="Samir Mitra"/>    
+    </bean>
+</beans>
